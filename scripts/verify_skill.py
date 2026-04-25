@@ -17,6 +17,7 @@ REQUIRED_FILES = [
     "agents/openai.yaml",
     "references/service-map.json",
     "references/query-workflow.md",
+    "references/runtime-auth.md",
     "references/smoke-tests.md",
     "scripts/cvp_query.py",
 ]
@@ -80,11 +81,39 @@ def check_helper_script() -> None:
         fail("build-url output did not URL-encode q")
 
 
+def check_request_guards() -> None:
+    script = ROOT / "scripts" / "cvp_query.py"
+    http_result = subprocess.run(
+        [sys.executable, str(script), "get", "--url", "http://data.media.theplatform.com/media/data/Media"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if http_result.returncode == 0:
+        fail("cvp_query.py allowed a non-HTTPS request")
+    if "Refusing non-HTTPS request" not in http_result.stderr:
+        fail("non-HTTPS refusal message changed unexpectedly")
+
+    host_result = subprocess.run(
+        [sys.executable, str(script), "get", "--url", "https://example.com/media/data/Media"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if host_result.returncode == 0:
+        fail("cvp_query.py allowed an unlisted host")
+    if "Refusing request to unlisted host" not in host_result.stderr:
+        fail("unlisted-host refusal message changed unexpectedly")
+
+
 def main() -> int:
     check_files()
     check_skill_frontmatter()
     check_service_map()
     check_helper_script()
+    check_request_guards()
     print("OK: cvp-query-agent package sanity checks passed")
     return 0
 

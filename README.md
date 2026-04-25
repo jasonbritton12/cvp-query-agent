@@ -19,3 +19,11 @@ python3 scripts/cvp_query.py build-url --object Media --q "title:\"Example\"" --
 ```
 
 Authentication is runtime-only. Do not store CVP tokens, cookies, signed URLs, or account secrets in this repository.
+
+For live read-only access, prefer macOS Keychain-backed runtime credentials:
+
+```bash
+python3 scripts/cvp_query.py get --use-keychain --object Media --field id --field title
+```
+
+See `references/runtime-auth.md` for the Keychain setup command, runtime consent model, and credential removal steps.

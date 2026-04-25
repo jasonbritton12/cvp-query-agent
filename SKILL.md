@@ -84,6 +84,14 @@ Authentication is runtime-only. The script reads optional environment variables:
 - `CVP_BEARER_TOKEN`: token used as `Authorization: Bearer <token>`
 - `CVP_COOKIE`: cookie header value
 
+For operator workflows on macOS, prefer the Keychain-backed runtime path:
+
+```bash
+python3 scripts/cvp_query.py get --use-keychain --object Media --by-field guid=12345 --field id --field guid --field title
+```
+
+Use `references/runtime-auth.md` for the Keychain storage command and access-removal steps. The helper asks for runtime confirmation before reading Keychain, refuses non-HTTPS requests, and restricts live requests to known CVP hosts unless the user explicitly passes `--allow-host`.
+
 Never write credentials into skill files, references, logs, or final answers.
 
 ## Cross-Endpoint ID Resolution
@@ -125,6 +133,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 
 - `references/service-map.json`: known base URLs, object endpoint templates, and service aliases.
 - `references/query-workflow.md`: detailed natural-language-to-query, cross-reference, and answer workflow.
+- `references/runtime-auth.md`: Keychain-backed runtime authentication setup and rules.
 - `references/smoke-tests.md`: validation prompts and expected behaviors.
 - `scripts/cvp_query.py`: URL builder and optional read-only request helper.
 - `scripts/verify_skill.py`: local package sanity checks.

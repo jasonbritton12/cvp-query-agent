@@ -9,6 +9,8 @@ python3 scripts/verify_skill.py
 python3 scripts/cvp_query.py objects
 python3 scripts/cvp_query.py build-url --object Media --q "title:\"Example\"" --field id --field guid --field title
 python3 scripts/cvp_query.py build-url --object Media --by-field guid=abc123 --field id --field guid --field title
+python3 scripts/cvp_query.py get --url http://data.media.theplatform.com/media/data/Media
+python3 scripts/cvp_query.py get --url https://example.com/media/data/Media
 ```
 
 Expected:
@@ -16,6 +18,8 @@ Expected:
 - `verify_skill.py` exits `0`
 - object list includes `Media` and `MediaFile`
 - generated URLs are encoded and include only requested query parameters
+- HTTP URLs are refused before any request is made
+- unlisted HTTPS hosts are refused before any request is made
 - no credentials are printed
 
 ## Agent Behavior Prompts
