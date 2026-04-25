@@ -23,6 +23,7 @@ Expected:
 - no credentials are printed
 - maintained knowledge docs exist for endpoint inventory, API call patterns, field/join rules, and source catalog references
 - `program` is not aliased to `Media`; CVP Entertainment has a distinct `Program` object
+- knowledge-file updates require explicit user permission, including ignored private files
 
 ## Agent Behavior Prompts
 
@@ -59,3 +60,12 @@ Expected behavior:
 - queries Media for matching titles and join keys
 - resolves MediaFile records with a join table
 - saves a CSV only after live results are available or returns a dry-run report plan
+
+Prompt: `Remember that MediaFile.mediaId joins to Media.id for future queries.`
+
+Expected behavior:
+
+- identifies the request as a candidate knowledge update
+- asks for explicit permission before editing any knowledge file
+- classifies whether the update is committed-safe or private-local
+- runs `python3 scripts/verify_skill.py` after any approved edit

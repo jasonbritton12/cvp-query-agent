@@ -96,6 +96,21 @@ def check_cvp_docs_catalog() -> None:
             fail(f"data-services-catalog.json contains non-CVP-docs URL: {url}")
 
 
+def check_knowledge_consent_gate() -> None:
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    maintenance_text = (ROOT / "references" / "knowledge-maintenance.md").read_text(encoding="utf-8")
+    required_phrases = [
+        "Never update committed or private knowledge files automatically",
+        "explicit permission before editing any knowledge file",
+        "Knowledge updates are always opt-in",
+        "ignored private files",
+    ]
+    combined = skill_text + "\n" + maintenance_text
+    for phrase in required_phrases:
+        if phrase not in combined:
+            fail(f"knowledge consent gate missing phrase: {phrase}")
+
+
 def check_helper_script() -> None:
     script = ROOT / "scripts" / "cvp_query.py"
     result = subprocess.run(
@@ -148,6 +163,7 @@ def main() -> int:
     check_skill_frontmatter()
     check_service_map()
     check_cvp_docs_catalog()
+    check_knowledge_consent_gate()
     check_helper_script()
     check_request_guards()
     print("OK: cvp-query-agent package sanity checks passed")

@@ -22,6 +22,20 @@ Default to a read-only analyst workflow.
 
 If credentials, base URLs, or tenant/account context are missing, produce a dry-run query plan and ask only for the missing operational inputs needed to run it.
 
+## Knowledge Update Consent
+
+Never update committed or private knowledge files automatically during normal query answering.
+
+When a query reveals a reusable endpoint, field, relationship, filter, or caveat:
+
+1. Report the candidate learning in the answer or as a short follow-up note.
+2. Classify it as committed-safe, private-local, or unclear.
+3. Ask the user for explicit permission before editing any knowledge file.
+4. Wait for approval before changing `references/*.md`, `references/*.json`, or ignored private knowledge files.
+5. After approved edits, run `python3 scripts/verify_skill.py`.
+
+This consent gate applies even when the update would be written only to ignored private files.
+
 ## Required Inputs
 
 At minimum, identify:
@@ -130,6 +144,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 - Do not call update/delete/start/complete methods unless explicitly requested and confirmed.
 - Do not infer object relationships from similar field names without validating through docs or returned data.
 - Do not broaden filters silently when an exact lookup returns no rows; report the miss and ask whether to broaden.
+- Do not update knowledge files without explicit user permission for that update.
 - Redact tokens, cookies, account secrets, and signed URLs.
 - Keep raw response dumps out of the final answer unless the user asks for them.
 - Save large result sets to a file only when the user asks for an artifact.

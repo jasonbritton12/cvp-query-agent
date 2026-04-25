@@ -41,3 +41,5 @@ Knowledge docs:
 - `references/field-and-join-model.md` captures baseline field naming and endpoint join rules.
 - `references/datadump-learnings.md` captures sanitized local datadump and query-note findings.
 - `references/knowledge-maintenance.md` defines the update loop for improving the skill over time.
+
+Knowledge updates are opt-in. The skill should propose candidate updates after useful discoveries, but it must ask before editing committed docs or ignored private knowledge files.

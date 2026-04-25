@@ -27,9 +27,31 @@ When the agent answers a new kind of CVP question:
 2. Build the smallest safe dry-run query plan.
 3. Run live `GET` only with user-approved runtime credentials.
 4. Compare returned fields and relationships against the docs.
-5. Add durable, non-sensitive findings to the maintained docs.
-6. Keep tenant-specific endpoints, IDs, hosts, accounts, tokens, and customer details out of committed files.
-7. Run `python3 scripts/verify_skill.py`.
+5. Identify any candidate knowledge update and classify it as committed-safe, private-local, or unclear.
+6. Ask the user for explicit permission before editing any committed or private knowledge file.
+7. Add only approved durable findings to the appropriate maintained or private docs.
+8. Keep tenant-specific endpoints, IDs, hosts, accounts, tokens, and customer details out of committed files.
+9. Run `python3 scripts/verify_skill.py`.
+
+## Consent Gate
+
+Knowledge updates are always opt-in.
+
+The agent may suggest a knowledge update after a query, but it must not edit any of these without explicit user approval for that specific update:
+
+- committed docs such as `references/*.md`
+- committed maps/catalogs such as `references/*.json`
+- ignored private files such as `references/local-endpoints.private.json`
+- ignored private notes such as `references/local-*.private.md`
+
+Before making an approved update, state:
+
+- what was learned
+- where it should be recorded
+- whether it is safe for the public repo or should stay private
+- what verification will be run
+
+If the user does not approve the update, answer the query and leave files unchanged.
 
 ## What Not to Commit
 
