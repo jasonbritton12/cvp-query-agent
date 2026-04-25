@@ -31,7 +31,7 @@ At minimum, identify:
 - service base URL or endpoint URL
 - authentication method available in the current environment
 
-Use `references/service-map.json` for known local base URLs and endpoint templates. If a needed service is not listed, use the CVP documentation lookup workflow before composing the request.
+Use `references/endpoints.md` for the human-readable endpoint inventory and `references/service-map.json` for known local base URLs and endpoint templates. If a needed service is not listed, use the CVP documentation lookup workflow before composing the request.
 
 ## Documentation Lookup
 
@@ -132,6 +132,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 ## Resources
 
 - `references/service-map.json`: known base URLs, object endpoint templates, and service aliases.
+- `references/endpoints.md`: human-readable endpoint inventory and update rules.
 - `references/query-workflow.md`: detailed natural-language-to-query, cross-reference, and answer workflow.
 - `references/runtime-auth.md`: Keychain-backed runtime authentication setup and rules.
 - `references/smoke-tests.md`: validation prompts and expected behaviors.

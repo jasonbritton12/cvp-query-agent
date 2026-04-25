@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = [
     "SKILL.md",
     "agents/openai.yaml",
+    "references/endpoints.md",
     "references/service-map.json",
     "references/query-workflow.md",
     "references/runtime-auth.md",

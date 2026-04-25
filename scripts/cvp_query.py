@@ -18,6 +18,7 @@ from urllib.request import Request, urlopen
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 SERVICE_MAP_PATH = SKILL_ROOT / "references" / "service-map.json"
+LOCAL_SERVICE_MAP_PATH = SKILL_ROOT / "references" / "local-endpoints.private.json"
 DEFAULT_KEYCHAIN_SERVICE = "cvp-query-agent.readonly-token"
 DEFAULT_KEYCHAIN_ACCOUNT = "cvp-readonly"
 SENSITIVE_PATTERNS = [
@@ -28,9 +29,30 @@ SENSITIVE_PATTERNS = [
 ]
 
 
+def merge_service_maps(base: dict, overlay: dict) -> dict:
+    merged = dict(base)
+    services = dict(base.get("services", {}))
+    for service_name, service_config in overlay.get("services", {}).items():
+        current = dict(services.get(service_name, {}))
+        current.update({key: value for key, value in service_config.items() if key != "objects"})
+        objects = dict(services.get(service_name, {}).get("objects", {}))
+        objects.update(service_config.get("objects", {}))
+        current["objects"] = objects
+        services[service_name] = current
+    merged["services"] = services
+    aliases = dict(base.get("aliases", {}))
+    aliases.update(overlay.get("aliases", {}))
+    merged["aliases"] = aliases
+    return merged
+
+
 def load_service_map() -> dict:
     with SERVICE_MAP_PATH.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+        service_map = json.load(handle)
+    if LOCAL_SERVICE_MAP_PATH.exists():
+        with LOCAL_SERVICE_MAP_PATH.open("r", encoding="utf-8") as handle:
+            service_map = merge_service_maps(service_map, json.load(handle))
+    return service_map
 
 
 def iter_objects(service_map: dict) -> Iterable[tuple[str, str, str]]:

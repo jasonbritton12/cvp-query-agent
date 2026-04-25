@@ -27,3 +27,9 @@ python3 scripts/cvp_query.py get --use-keychain --object Media --field id --fiel
 ```
 
 See `references/runtime-auth.md` for the Keychain setup command, runtime consent model, and credential removal steps.
+
+Endpoint inventory:
+
+- `references/endpoints.md` is the human-readable endpoint knowledge doc.
+- `references/service-map.json` is the machine-readable endpoint map used by the helper.
+- `references/local-endpoints.private.json` is reserved for local customer-specific endpoints, is ignored by Git, and is merged at runtime when present.
