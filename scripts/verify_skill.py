@@ -18,6 +18,7 @@ REQUIRED_FILES = [
     "references/api-call-patterns.md",
     "references/cvp-docs/README.md",
     "references/cvp-docs/data-services-catalog.json",
+    "references/datadump-learnings.md",
     "references/endpoints.md",
     "references/field-and-join-model.md",
     "references/knowledge-maintenance.md",
@@ -59,12 +60,15 @@ def check_service_map() -> None:
     if "media" not in services:
         fail("service-map.json missing media service")
     objects = services["media"].get("objects", {})
-    for object_name in ("Media", "MediaFile"):
+    for object_name in ("Media", "MediaFile", "Release", "Provider", "Server", "Field"):
         if object_name not in objects:
             fail(f"service-map.json missing {object_name}")
         endpoint = objects[object_name].get("endpoint", "")
         if not endpoint.startswith("https://"):
             fail(f"{object_name} endpoint must be HTTPS")
+    aliases = data.get("aliases", {})
+    if aliases.get("program") == "Media":
+        fail("service-map.json must not alias program to Media")
 
 
 def check_cvp_docs_catalog() -> None:
@@ -78,6 +82,9 @@ def check_cvp_docs_catalog() -> None:
         "Controlling the contents of the response payload",
         "Media endpoint",
         "MediaFile endpoint",
+        "Program endpoint",
+        "ProgramAvailability endpoint",
+        "Entertainment data service",
     }
     titles = {entry.get("title") for entry in entries}
     missing = sorted(required_titles - titles)

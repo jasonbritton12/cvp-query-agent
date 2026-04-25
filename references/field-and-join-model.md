@@ -18,6 +18,10 @@ Sources are indexed in `references/cvp-docs/data-services-catalog.json`; especia
 - `MediaDefaults object`
 - `Custom fields API reference`
 - `Media data service object schema history`
+- `Entertainment data service`
+- `Program endpoint`
+- `ProgramAvailability endpoint`
+- `ProgramAvailability.media`
 
 ## Baseline Identity Fields
 
@@ -40,6 +44,27 @@ For most CVP Data Service objects, start by checking these fields:
 | `MediaFile` | File-level technical and rendition metadata | `id`, `guid`, `title`, `ownerId`, `added`, `updated`, plus confirmed media reference fields |
 | `MediaDefaults` | Account-level Media defaults | `id`, `guid`, `ownerId` |
 | `AccountSettings` | Media service account settings | `id`, `guid`, `ownerId` |
+| `AssetType` | Media asset/rendition type lookup | `id`, `guid`, `title`, `ownerId` |
+| `Category` | Media category lookup | `id`, `guid`, `title`, `ownerId` |
+| `Field` | Media custom field metadata | `id`, `guid`, `fieldName`, `searchFieldName`, `ownerId` |
+| `MediaFileField` | MediaFile custom field metadata | `id`, `guid`, `fieldName`, `searchFieldName`, `ownerId` |
+| `Provider` | Provider/config lookup | `id`, `guid`, `title`, `ownerId` |
+| `Release` | Delivery/release records | `id`, `guid`, `mediaId`, `fileId`, `delivery`, `url`, `approved` |
+| `Server` | Storage/server config | `id`, `guid`, `title`, `ownerId`, `disabled` |
+
+## Entertainment Data Service Objects
+
+The local ENTERTAINMENT dumps verified these object families, but the live Entertainment base URL is not yet committed in `service-map.json`. Confirm the base URL before live calls.
+
+| Object | Use For | Starter Fields |
+| --- | --- | --- |
+| `Program` | Program/title/episode metadata | `id`, `guid`, `title`, `ownerId`, `approved`, `programType`, `seriesId`, `tvSeasonId`, `imageMediaIds` |
+| `ProgramAvailability` | Availability-aware program records and Media bridges | `id`, `guid`, `title`, `approved`, `media`, `mediaCount`, `distributionRightIds`, `distributionRights` |
+| `Credit` | Person-to-program/season credits | `id`, `guid`, `personId`, `programId`, `tvSeasonId`, `creditType`, `characterName` |
+| `Person` | Person metadata | `id`, `guid`, `title`, `aliases`, `credits`, `imageMediaIds` |
+| `Tag` | Entertainment tag lookup | `id`, `guid`, `title`, `scheme` |
+| `TvSeason` | Season-level metadata | `id`, `guid`, `title`, `seriesId`, `seriesTitle`, `tvSeasonNumber` |
+| `Station` | Station lookup/config | `id`, `guid`, `title` when available |
 
 ## Join Discipline
 
@@ -58,6 +83,7 @@ Do not assume:
 - `guid` exists on every object.
 - a field ending in `Id` points to the object you expect.
 - a relationship field on `Media` has the file fields the user wants.
+- `Program` means `Media`; CVP Entertainment has a distinct `Program` object.
 
 ## Common Query Plans
 
@@ -79,6 +105,21 @@ Do not assume:
 2. Identify the documented Media-to-MediaFile reference field.
 3. Query `MediaFile` using the confirmed reference field.
 4. Join results locally and mark unresolved file references.
+
+### Bridge Entertainment ProgramAvailability to Media
+
+1. Query `ProgramAvailability` only after confirming the Entertainment base URL.
+2. Request `id,guid,title,approved,media,media.id,media.guid,media.availabilityState` plus required custom ID fields.
+3. Inspect the returned `media` shape before joining.
+4. Resolve Media records by confirmed `Media.id` or `guid`.
+5. Report ProgramAvailability state separately from Media availability state.
+
+### Find Artwork/Image Media
+
+1. Query `Media` with explicit image/content fields.
+2. Prefer documented filters such as content type or asset type only after confirming syntax.
+3. Request `content.contentType,content.height,content.width,content.format,content.assetTypes,content.title,content.url,content.aspectRatio` only when those fields are needed.
+4. Treat URL/path fields as sensitive in outputs.
 
 ### Audit Metadata Completeness
 

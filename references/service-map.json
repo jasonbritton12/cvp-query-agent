@@ -13,13 +13,51 @@
       "base_url": "https://data.media.theplatform.com/media",
       "endpoint_base": "https://data.media.theplatform.com/media/data",
       "docs": [
+        "AssetType endpoint",
+        "Category endpoint",
+        "Field endpoint",
         "Media endpoint",
         "Retrieving Media objects",
         "Using media filters",
         "Using the q query to search for Media objects",
-        "MediaFile endpoint"
+        "MediaFile endpoint",
+        "Provider endpoint",
+        "Release endpoint",
+        "Server endpoint"
       ],
       "objects": {
+        "AssetType": {
+          "endpoint": "https://data.media.theplatform.com/media/data/AssetType",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId"
+          ],
+          "notes": "Lookup/config object observed in MEDIA datadumps. Confirm field support before filtering."
+        },
+        "Category": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Category",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId"
+          ],
+          "notes": "Category lookup object observed in MEDIA datadumps."
+        },
+        "Field": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Field",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "fieldName",
+            "searchFieldName",
+            "ownerId"
+          ],
+          "notes": "Custom field metadata endpoint; useful for discovering namespace-prefixed fields."
+        },
         "Media": {
           "endpoint": "https://data.media.theplatform.com/media/data/Media",
           "common_display_fields": [
@@ -44,6 +82,18 @@
           ],
           "notes": "Use for file-level metadata and media-to-file cross-reference questions after confirming fields in the MediaFile endpoint docs."
         },
+        "MediaFileField": {
+          "endpoint": "https://data.media.theplatform.com/media/data/MediaFileField",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "fieldName",
+            "searchFieldName",
+            "ownerId"
+          ],
+          "notes": "MediaFile custom field metadata endpoint observed in MEDIA datadumps."
+        },
         "MediaDefaults": {
           "endpoint": "https://data.media.theplatform.com/media/data/MediaDefaults",
           "common_display_fields": [
@@ -61,6 +111,41 @@
             "ownerId"
           ],
           "notes": "Media service account settings endpoint; confirm fields before use."
+        },
+        "Provider": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Provider",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId",
+            "updated"
+          ],
+          "notes": "Provider lookup/config object observed in MEDIA datadumps."
+        },
+        "Release": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Release",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "mediaId",
+            "fileId",
+            "url",
+            "delivery",
+            "approved"
+          ],
+          "notes": "Release records join Media and MediaFile through mediaId and fileId; use for delivery URL/state analysis."
+        },
+        "Server": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Server",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId",
+            "disabled"
+          ],
+          "notes": "Server records can contain sensitive storage/URL fields. Request only needed fields."
         }
       }
     }
@@ -70,9 +155,13 @@
     "title": "Media",
     "video": "Media",
     "asset": "Media",
-    "program": "Media",
     "file": "MediaFile",
     "rendition": "MediaFile",
-    "media file": "MediaFile"
+    "media file": "MediaFile",
+    "asset type": "AssetType",
+    "category": "Category",
+    "provider": "Provider",
+    "release": "Release",
+    "server": "Server"
   }
 }

@@ -59,7 +59,8 @@ Read these maintained knowledge docs before building non-trivial calls:
 
 1. `references/api-call-patterns.md` for endpoint/filter/field selection order.
 2. `references/field-and-join-model.md` for baseline field names and cross-endpoint join discipline.
-3. `references/query-workflow.md` for natural-language planning, reporting, and answer format.
+3. `references/datadump-learnings.md` for sanitized field, join, and query-note patterns observed in local partial datadumps.
+4. `references/query-workflow.md` for natural-language planning, reporting, and answer format.
 
 For simple single-endpoint reads:
 
@@ -139,6 +140,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 - `references/endpoints.md`: human-readable endpoint inventory and update rules.
 - `references/api-call-patterns.md`: maintained CVP API call-building order of operations.
 - `references/field-and-join-model.md`: maintained field naming and cross-endpoint join baseline.
+- `references/datadump-learnings.md`: sanitized local datadump and query-note findings.
 - `references/knowledge-maintenance.md`: rules for improving the skill's knowledge docs safely.
 - `references/cvp-docs/`: condensed source catalog of selected CVP Data Services documentation entries.
 - `references/query-workflow.md`: detailed natural-language-to-query, cross-reference, and answer workflow.

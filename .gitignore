@@ -16,6 +16,7 @@ env/
 .env
 *.env
 references/local-endpoints.private.json
+references/local-*.private.md
 
 # IDEs
 .idea/

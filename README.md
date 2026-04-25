@@ -39,4 +39,5 @@ Knowledge docs:
 - `references/cvp-docs/` contains the condensed CVP Data Services source catalog.
 - `references/api-call-patterns.md` captures the maintained API call-building workflow.
 - `references/field-and-join-model.md` captures baseline field naming and endpoint join rules.
+- `references/datadump-learnings.md` captures sanitized local datadump and query-note findings.
 - `references/knowledge-maintenance.md` defines the update loop for improving the skill over time.

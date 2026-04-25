@@ -6,7 +6,7 @@ It intentionally does not include the full local HTML/PDF export. The full expor
 
 ## Included Files
 
-- `data-services-catalog.json`: selected CVP Data Services documentation titles, source URLs, local export filenames, and index IDs.
+- `data-services-catalog.json`: selected CVP Data Services documentation titles, source URLs, local export filenames, and index IDs. It now includes the Media and Entertainment service entries needed by the maintained endpoint and join docs.
 
 ## Source Corpus
 

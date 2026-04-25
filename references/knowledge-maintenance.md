@@ -13,6 +13,7 @@ The maintained docs are intentionally smaller than the CVP documentation. They s
 | --- | --- |
 | `references/api-call-patterns.md` | Order of operations for selecting endpoints, filters, fields, auth, and response handling. |
 | `references/field-and-join-model.md` | Baseline field naming and cross-endpoint join rules. |
+| `references/datadump-learnings.md` | Sanitized learnings from local partial datadumps and query notes. |
 | `references/endpoints.md` | Human-readable endpoint inventory and private overlay rules. |
 | `references/query-workflow.md` | Natural-language-to-query workflow and answer contract. |
 | `references/runtime-auth.md` | Runtime credential handling and Keychain setup. |
@@ -35,8 +36,11 @@ When the agent answers a new kind of CVP question:
 - Full CVP HTML/PDF exports.
 - Internal Confluence exports or links unless explicitly approved.
 - Tokens, cookies, signed URLs, account secrets, tenant IDs, private account names, or customer hosts.
+- Customer-specific custom field names or exact internal namespace prefixes unless the repo owner explicitly approves publishing them.
 - Raw API responses containing sensitive data.
 - One-off live query artifacts unless the user specifically asks for a sanitized report.
+
+Use ignored local files such as `references/local-datadump-learnings.private.md` when exact customer field names or tenant-specific observations are useful locally but should not be published.
 
 ## Refresh Triggers
 
@@ -47,3 +51,4 @@ Refresh the condensed catalog and maintained docs when:
 - A recurring question exposes a missing field or relationship pattern.
 - A live response contradicts the maintained docs.
 - The service map changes.
+- New local datadumps or query notes reveal stable field/join patterns.

@@ -22,6 +22,7 @@ Expected:
 - unlisted HTTPS hosts are refused before any request is made
 - no credentials are printed
 - maintained knowledge docs exist for endpoint inventory, API call patterns, field/join rules, and source catalog references
+- `program` is not aliased to `Media`; CVP Entertainment has a distinct `Program` object
 
 ## Agent Behavior Prompts
 

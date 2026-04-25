@@ -52,6 +52,18 @@ Use filters in this order:
 | Human title or text | `q=...` | Treat as discovery. Expect multiple matches and ask for disambiguation when needed. |
 | Relationship/reference ID | Query the endpoint that owns the referenced object | Do not assume a label field from the source record is authoritative. |
 
+## Nested Content and Release Filters
+
+Some CVP Media workflows use nested content/release filters such as `byContent`, `contentFilter`, or release-related filters nested inside those parameters. Treat these as endpoint-specific and syntax-sensitive.
+
+Rules:
+
+1. Do not put nested release filters at the top level unless the endpoint docs say the parameter is valid there.
+2. Encode nested filters deliberately and preserve the exact raw and encoded form in the query plan.
+3. If a top-level parameter returns `BadParameterException`, record the failing parameter and retry only after checking docs or user notes.
+4. Keep `q` search separate from structured filters such as `byApproved`, `byAvailabilityState`, and `byContent`.
+5. For streaming/rendition queries, request the smallest content/release fields needed to verify delivery state.
+
 ## Field Projection
 
 Always request explicit `fields`.
@@ -76,6 +88,7 @@ Do not request broad payloads unless the user asks for inspection or export. Lar
 - Use known hosts from `service-map.json` or the private local endpoint overlay.
 - Do not add write-capable methods to normal workflow docs.
 - Redact tokens, cookies, account secrets, and signed URLs.
+- Treat storage, source, streaming, and release URL fields as sensitive even when the credential is read-only.
 
 ## Result Handling
 

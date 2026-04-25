@@ -12,10 +12,33 @@ These are generic CVP Data Services endpoints currently committed with the skill
 
 | Service | Object | Endpoint | Notes |
 | --- | --- | --- | --- |
+| Media Data Service | `AssetType` | `https://data.media.theplatform.com/media/data/AssetType` | Asset/rendition type lookup. |
+| Media Data Service | `Category` | `https://data.media.theplatform.com/media/data/Category` | Category lookup. |
+| Media Data Service | `Field` | `https://data.media.theplatform.com/media/data/Field` | Custom field metadata; useful for `fieldName` and `searchFieldName`. |
 | Media Data Service | `Media` | `https://data.media.theplatform.com/media/data/Media` | Media-level records. Confirm fields and filters against CVP docs before live use. |
 | Media Data Service | `MediaFile` | `https://data.media.theplatform.com/media/data/MediaFile` | File-level records. Use for media-to-file joins only after confirming relationship fields. |
+| Media Data Service | `MediaFileField` | `https://data.media.theplatform.com/media/data/MediaFileField` | MediaFile custom field metadata. |
 | Media Data Service | `MediaDefaults` | `https://data.media.theplatform.com/media/data/MediaDefaults` | Default Media configuration records. |
 | Media Data Service | `AccountSettings` | `https://data.media.theplatform.com/media/data/AccountSettings` | Media service account settings records. |
+| Media Data Service | `Provider` | `https://data.media.theplatform.com/media/data/Provider` | Provider/config lookup. |
+| Media Data Service | `Release` | `https://data.media.theplatform.com/media/data/Release` | Release records; useful for `mediaId`, `fileId`, `delivery`, and `url`. |
+| Media Data Service | `Server` | `https://data.media.theplatform.com/media/data/Server` | Server/storage config; request only needed fields. |
+
+## Known But Not Yet Live-Configured
+
+These object families were observed in local datadumps and matched to CVP documentation, but the service base URL is not yet committed in `service-map.json`.
+
+| Service | Object | Docs | Notes |
+| --- | --- | --- | --- |
+| Entertainment Data Service | `Credit` | `Credit endpoint` | Joins people to programs/seasons through `personId`, `programId`, and `tvSeasonId`. |
+| Entertainment Data Service | `Person` | `Person endpoint` | Person metadata, aliases, bios, thumbnails, and credits. |
+| Entertainment Data Service | `Program` | `Program endpoint` | Program/title/episode metadata. Do not alias this to Media. |
+| Entertainment Data Service | `ProgramAvailability` | `ProgramAvailability endpoint` | Availability-aware program records with `media` bridge fields. |
+| Entertainment Data Service | `Station` | `Station endpoint` | Station lookup/config. |
+| Entertainment Data Service | `Tag` | `Tag endpoint` | Tag lookup. |
+| Entertainment Data Service | `TvSeason` | `TvSeason endpoint` | Season-level metadata. |
+
+Before enabling live calls for these objects, confirm the Entertainment service base URL and add it to `references/service-map.json`.
 
 ## Where to Add Endpoints
 
