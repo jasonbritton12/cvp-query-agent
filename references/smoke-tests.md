@@ -21,6 +21,7 @@ Expected:
 - HTTP URLs are refused before any request is made
 - unlisted HTTPS hosts are refused before any request is made
 - no credentials are printed
+- maintained knowledge docs exist for endpoint inventory, API call patterns, field/join rules, and source catalog references
 
 ## Agent Behavior Prompts
 

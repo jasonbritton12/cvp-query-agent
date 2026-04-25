@@ -15,7 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = [
     "SKILL.md",
     "agents/openai.yaml",
+    "references/api-call-patterns.md",
+    "references/cvp-docs/README.md",
+    "references/cvp-docs/data-services-catalog.json",
     "references/endpoints.md",
+    "references/field-and-join-model.md",
+    "references/knowledge-maintenance.md",
     "references/service-map.json",
     "references/query-workflow.md",
     "references/runtime-auth.md",
@@ -60,6 +65,28 @@ def check_service_map() -> None:
         endpoint = objects[object_name].get("endpoint", "")
         if not endpoint.startswith("https://"):
             fail(f"{object_name} endpoint must be HTTPS")
+
+
+def check_cvp_docs_catalog() -> None:
+    data = json.loads((ROOT / "references" / "cvp-docs" / "data-services-catalog.json").read_text(encoding="utf-8"))
+    entries = data.get("entries", [])
+    if not entries:
+        fail("data-services-catalog.json has no entries")
+    required_titles = {
+        "Selecting objects in Data Service operations",
+        "Selecting objects using a byField query parameter",
+        "Controlling the contents of the response payload",
+        "Media endpoint",
+        "MediaFile endpoint",
+    }
+    titles = {entry.get("title") for entry in entries}
+    missing = sorted(required_titles - titles)
+    if missing:
+        fail(f"data-services-catalog.json missing required titles: {', '.join(missing)}")
+    for entry in entries:
+        url = entry.get("source_url", "")
+        if not url.startswith("https://docs.theplatform.com/"):
+            fail(f"data-services-catalog.json contains non-CVP-docs URL: {url}")
 
 
 def check_helper_script() -> None:
@@ -113,6 +140,7 @@ def main() -> int:
     check_files()
     check_skill_frontmatter()
     check_service_map()
+    check_cvp_docs_catalog()
     check_helper_script()
     check_request_guards()
     print("OK: cvp-query-agent package sanity checks passed")

@@ -33,3 +33,10 @@ Endpoint inventory:
 - `references/endpoints.md` is the human-readable endpoint knowledge doc.
 - `references/service-map.json` is the machine-readable endpoint map used by the helper.
 - `references/local-endpoints.private.json` is reserved for local customer-specific endpoints, is ignored by Git, and is merged at runtime when present.
+
+Knowledge docs:
+
+- `references/cvp-docs/` contains the condensed CVP Data Services source catalog.
+- `references/api-call-patterns.md` captures the maintained API call-building workflow.
+- `references/field-and-join-model.md` captures baseline field naming and endpoint join rules.
+- `references/knowledge-maintenance.md` defines the update loop for improving the skill over time.

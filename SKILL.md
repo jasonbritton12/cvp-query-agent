@@ -14,7 +14,7 @@ Resolve bundled resource paths relative to this skill directory.
 Default to a read-only analyst workflow.
 
 1. Translate the user question into required entities, filters, output fields, and join keys.
-2. Confirm the relevant CVP service and endpoint docs before using endpoint-specific behavior.
+2. Review `references/api-call-patterns.md`, `references/field-and-join-model.md`, and the relevant CVP source entry before using endpoint-specific behavior.
 3. Build the smallest safe query that can answer the question.
 4. Execute only `GET` requests unless the user explicitly requests a write and confirms the risk.
 5. Cross-reference IDs by querying the endpoint that owns the referenced object.
@@ -31,7 +31,7 @@ At minimum, identify:
 - service base URL or endpoint URL
 - authentication method available in the current environment
 
-Use `references/endpoints.md` for the human-readable endpoint inventory and `references/service-map.json` for known local base URLs and endpoint templates. If a needed service is not listed, use the CVP documentation lookup workflow before composing the request.
+Use `references/endpoints.md` for the human-readable endpoint inventory and `references/service-map.json` for known local base URLs and endpoint templates. Use `references/cvp-docs/data-services-catalog.json` to locate the condensed CVP source docs behind the workflow. If a needed service is not listed, use the CVP documentation lookup workflow before composing the request.
 
 ## Documentation Lookup
 
@@ -55,7 +55,11 @@ Relevant CVP doc topics to search first:
 
 ## Query Workflow
 
-Read `references/query-workflow.md` for the full planning and answer workflow when the question involves multiple endpoints, ambiguous IDs, joins, or reporting.
+Read these maintained knowledge docs before building non-trivial calls:
+
+1. `references/api-call-patterns.md` for endpoint/filter/field selection order.
+2. `references/field-and-join-model.md` for baseline field names and cross-endpoint join discipline.
+3. `references/query-workflow.md` for natural-language planning, reporting, and answer format.
 
 For simple single-endpoint reads:
 
@@ -133,6 +137,10 @@ For live results, distinguish observed data from inference. For dry runs, label 
 
 - `references/service-map.json`: known base URLs, object endpoint templates, and service aliases.
 - `references/endpoints.md`: human-readable endpoint inventory and update rules.
+- `references/api-call-patterns.md`: maintained CVP API call-building order of operations.
+- `references/field-and-join-model.md`: maintained field naming and cross-endpoint join baseline.
+- `references/knowledge-maintenance.md`: rules for improving the skill's knowledge docs safely.
+- `references/cvp-docs/`: condensed source catalog of selected CVP Data Services documentation entries.
 - `references/query-workflow.md`: detailed natural-language-to-query, cross-reference, and answer workflow.
 - `references/runtime-auth.md`: Keychain-backed runtime authentication setup and rules.
 - `references/smoke-tests.md`: validation prompts and expected behaviors.

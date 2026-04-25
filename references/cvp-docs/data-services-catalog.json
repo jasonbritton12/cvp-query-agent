@@ -1,0 +1,210 @@
+{
+  "generated_from": "/Users/jasonbritton/.codex/skills/cvp-agent/references/docs_index.json",
+  "source_generated_at": "2026-01-29",
+  "scope": "Condensed CVP Data Services catalog for cvp-query-agent. Excludes Confluence/internal entries and full document text.",
+  "entries": [
+    {
+      "id": 947,
+      "title": "Developing with the Cloud Video Platform's data services",
+      "source_url": "https://docs.theplatform.com/help/wsf-developing-with-theplatforms-data-services",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 949,
+      "title": "Read-only data services",
+      "source_url": "https://docs.theplatform.com/help/wsf-read-only-data-services",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 951,
+      "title": "Selecting objects in Data Service operations",
+      "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-in-data-service-operations",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 952,
+      "title": "Selecting objects using the q query parameter",
+      "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-by-using-the-q-query-parameter",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 953,
+      "title": "Q query syntax reference",
+      "source_url": "https://docs.theplatform.com/help/wsf-q-query-syntax-reference",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 954,
+      "title": "Selecting objects using a byField query parameter",
+      "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-by-using-a-byfield-query-parameter",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 960,
+      "title": "Controlling the contents of the response payload",
+      "source_url": "https://docs.theplatform.com/help/wsf-controlling-the-contents-of-the-response-payload",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 964,
+      "title": "Specifying the data-service response payload format",
+      "source_url": "https://docs.theplatform.com/help/wsf-specifying-the-data-service-response-payload-format",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 978,
+      "title": "Custom fields API reference",
+      "source_url": "https://docs.theplatform.com/help/wsf-custom-fields-api-reference",
+      "local_file": "CVPDocs_2025-11-30_Part_09.html",
+      "part": "09"
+    },
+    {
+      "id": 1001,
+      "title": "Business-service API conventions",
+      "source_url": "https://docs.theplatform.com/help/wsf-business-service-api-conventions",
+      "local_file": "CVPDocs_2025-11-30_Part_10.html",
+      "part": "10"
+    },
+    {
+      "id": 1008,
+      "title": "Index of standard request parameters",
+      "source_url": "https://docs.theplatform.com/help/wsf-index-of-standard-request-parameters",
+      "local_file": "CVPDocs_2025-11-30_Part_10.html",
+      "part": "10"
+    },
+    {
+      "id": 1946,
+      "title": "MediaFileSettings object",
+      "source_url": "https://docs.theplatform.com/help/fms-mediafilesettings-object",
+      "local_file": "CVPDocs_2025-11-30_Part_19.html",
+      "part": "19"
+    },
+    {
+      "id": 2085,
+      "title": "AccountSettings endpoint (Media)",
+      "source_url": "https://docs.theplatform.com/help/media-accountsettings-endpoint",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2086,
+      "title": "AccountSettings object (Media)",
+      "source_url": "https://docs.theplatform.com/help/media-accountsettings-object",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2093,
+      "title": "MediaDefaults endpoint",
+      "source_url": "https://docs.theplatform.com/help/media-mediadefaults-endpoint",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2094,
+      "title": "MediaDefaults object",
+      "source_url": "https://docs.theplatform.com/help/media-mediadefaults-object",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2095,
+      "title": "Media endpoint",
+      "source_url": "https://docs.theplatform.com/help/media-media-endpoint",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2096,
+      "title": "Media object",
+      "source_url": "https://docs.theplatform.com/help/media-media-object",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2097,
+      "title": "Media.availabilityWindows",
+      "source_url": "https://docs.theplatform.com/help/media-media-availabilitywindows",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2098,
+      "title": "Media.link",
+      "source_url": "https://docs.theplatform.com/help/media-media-link",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2099,
+      "title": "Media.ratings",
+      "source_url": "https://docs.theplatform.com/help/media-media-ratings",
+      "local_file": "CVPDocs_2025-11-30_Part_20.html",
+      "part": "20"
+    },
+    {
+      "id": 2100,
+      "title": "Media.thumbnails",
+      "source_url": "https://docs.theplatform.com/help/media-media-thumbnails",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2101,
+      "title": "Retrieving Media objects",
+      "source_url": "https://docs.theplatform.com/help/media-retrieving-media-objects",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2102,
+      "title": "Using media filters",
+      "source_url": "https://docs.theplatform.com/help/media-using-media-filters",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2104,
+      "title": "Using the q query to search for Media objects",
+      "source_url": "https://docs.theplatform.com/help/media-using-the-q-query-to-search-for-media-objects",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2105,
+      "title": "MediaFile endpoint",
+      "source_url": "https://docs.theplatform.com/help/media-mediafile-endpoint",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2106,
+      "title": "MediaFile object",
+      "source_url": "https://docs.theplatform.com/help/media-mediafile-object",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2128,
+      "title": "Media data service object schema history",
+      "source_url": "https://docs.theplatform.com/help/media-data-service-object-schema-history",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    },
+    {
+      "id": 2129,
+      "title": "Media data service release notes",
+      "source_url": "https://docs.theplatform.com/help/media-data-service-release-notes",
+      "local_file": "CVPDocs_2025-11-30_Part_21.html",
+      "part": "21"
+    }
+  ]
+}
