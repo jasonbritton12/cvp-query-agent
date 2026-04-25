@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "source": "Seeded from local cvp-agent references/cvp_context.json and CVP documentation index titles.",
+    "last_seeded": "2026-04-25",
+    "notes": [
+      "Confirm endpoint-specific fields and query parameters against CVP docs before live use.",
+      "Add customer-specific service base URLs here as they become available."
+    ]
+  },
+  "services": {
+    "media": {
+      "display_name": "Media Data Service",
+      "base_url": "https://data.media.theplatform.com/media",
+      "endpoint_base": "https://data.media.theplatform.com/media/data",
+      "docs": [
+        "Media endpoint",
+        "Retrieving Media objects",
+        "Using media filters",
+        "Using the q query to search for Media objects",
+        "MediaFile endpoint"
+      ],
+      "objects": {
+        "Media": {
+          "endpoint": "https://data.media.theplatform.com/media/data/Media",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId",
+            "added",
+            "updated"
+          ],
+          "notes": "Use docs to confirm additional metadata, availability, publish, file, rights, or relationship fields before selecting them."
+        },
+        "MediaFile": {
+          "endpoint": "https://data.media.theplatform.com/media/data/MediaFile",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "title",
+            "ownerId",
+            "added",
+            "updated"
+          ],
+          "notes": "Use for file-level metadata and media-to-file cross-reference questions after confirming fields in the MediaFile endpoint docs."
+        },
+        "MediaDefaults": {
+          "endpoint": "https://data.media.theplatform.com/media/data/MediaDefaults",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "ownerId"
+          ],
+          "notes": "Use only when the question concerns default Media configuration."
+        },
+        "AccountSettings": {
+          "endpoint": "https://data.media.theplatform.com/media/data/AccountSettings",
+          "common_display_fields": [
+            "id",
+            "guid",
+            "ownerId"
+          ],
+          "notes": "Media service account settings endpoint; confirm fields before use."
+        }
+      }
+    }
+  },
+  "aliases": {
+    "media": "Media",
+    "title": "Media",
+    "video": "Media",
+    "asset": "Media",
+    "program": "Media",
+    "file": "MediaFile",
+    "rendition": "MediaFile",
+    "media file": "MediaFile"
+  }
+}

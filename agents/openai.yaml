@@ -1,0 +1,4 @@
+interface:
+  display_name: "CVP Query Agent"
+  short_description: "Answer CVP data questions by planning queries and resolving IDs."
+  default_prompt: "Answer my CVP data question by selecting the right endpoints, building safe read-only queries, resolving IDs across endpoints, and reporting the evidence."
