@@ -10,6 +10,25 @@ This repository contains the skill definition, OpenAI surface metadata, helper s
 
 Refer to `SKILL.md` for the core instruction set and execution details.
 
+## Install
+
+Install or update the skill by copying this repository into your Codex skills directory:
+
+```bash
+mkdir -p "$CODEX_HOME/skills"
+rsync -a --delete ./ "$CODEX_HOME/skills/cvp-query-agent/"
+python3 "$CODEX_HOME/skills/cvp-query-agent/scripts/verify_skill.py"
+```
+
+If `CODEX_HOME` is not set, use `~/.codex`.
+
+## Release Contents
+
+- `SKILL.md`: core skill instructions.
+- `agents/openai.yaml`: OpenAI surface metadata.
+- `scripts/`: deterministic URL building, guarded live GET helper, and verification.
+- `references/`: maintained CVP query knowledge, endpoint maps, runtime auth, smoke tests, and condensed source catalog.
+
 Common local checks:
 
 ```bash
@@ -20,10 +39,41 @@ python3 scripts/cvp_query.py build-url --object Media --q "title:\"Example\"" --
 
 Authentication is runtime-only. Do not store CVP tokens, cookies, signed URLs, or account secrets in this repository.
 
+## First Safe Query
+
+1. Build a dry-run URL with explicit fields and filters:
+
+```bash
+python3 scripts/cvp_query.py build-url \
+  --object Media \
+  --by-field guid=abc123 \
+  --field id \
+  --field guid \
+  --field title \
+  --field updated
+```
+
+2. Store a short-lived read-only token in Keychain using `references/runtime-auth.md`.
+3. Run the live read with the same explicit scope:
+
+```bash
+python3 scripts/cvp_query.py get \
+  --use-keychain \
+  --object Media \
+  --by-field guid=abc123 \
+  --field id \
+  --field guid \
+  --field title \
+  --field updated
+```
+
+4. Review the live-request summary and type `RUN` only if the host, path, fields, filters, and auth source are correct.
+5. Treat returned metadata as sensitive. Candidate knowledge updates must be approved before any files are edited.
+
 For live read-only access, prefer macOS Keychain-backed runtime credentials:
 
 ```bash
-python3 scripts/cvp_query.py get --use-keychain --object Media --field id --field title
+python3 scripts/cvp_query.py get --use-keychain --object Media --by-field guid=abc123 --field id --field title
 ```
 
 See `references/runtime-auth.md` for the Keychain setup command, runtime consent model, and credential removal steps.

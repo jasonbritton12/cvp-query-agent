@@ -85,7 +85,9 @@ Do not request broad payloads unless the user asks for inspection or export. Lar
 - Use `GET` only.
 - Use HTTPS only.
 - Use the Keychain-backed runtime auth path when credentials are needed.
-- Use known hosts from `service-map.json` or the private local endpoint overlay.
+- Use configured CVP Data Services endpoint prefixes from `service-map.json` or the private local endpoint overlay.
+- Live `get` requires explicit fields, a filter or range unless explicitly overridden, and a typed `RUN` confirmation.
+- Raw response output requires `--allow-raw-response`; otherwise the helper redacts sensitive-looking fields and caps console output.
 - Do not add write-capable methods to normal workflow docs.
 - Redact tokens, cookies, account secrets, and signed URLs.
 - Treat storage, source, streaming, and release URL fields as sensitive even when the credential is read-only.

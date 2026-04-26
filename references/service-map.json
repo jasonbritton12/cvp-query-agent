@@ -4,7 +4,7 @@
     "last_seeded": "2026-04-25",
     "notes": [
       "Confirm endpoint-specific fields and query parameters against CVP docs before live use.",
-      "Add customer-specific service base URLs here as they become available."
+      "Keep customer-specific service base URLs in references/local-endpoints.private.json, not in this committed public map."
     ]
   },
   "services": {

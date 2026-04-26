@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
+import importlib.util
 from pathlib import Path
 
 
@@ -56,6 +58,14 @@ def check_skill_frontmatter() -> None:
 
 def check_service_map() -> None:
     data = json.loads((ROOT / "references" / "service-map.json").read_text(encoding="utf-8"))
+    text = (ROOT / "references" / "service-map.json").read_text(encoding="utf-8")
+    forbidden_phrases = [
+        "Add customer-specific service base URLs here",
+        "--allow-host",
+    ]
+    for phrase in forbidden_phrases:
+        if phrase in text:
+            fail(f"service-map.json contains forbidden public/private guidance: {phrase}")
     services = data.get("services", {})
     if "media" not in services:
         fail("service-map.json missing media service")
@@ -94,6 +104,8 @@ def check_cvp_docs_catalog() -> None:
         url = entry.get("source_url", "")
         if not url.startswith("https://docs.theplatform.com/"):
             fail(f"data-services-catalog.json contains non-CVP-docs URL: {url}")
+        if not entry.get("domain") or not entry.get("service"):
+            fail("data-services-catalog.json entries must include domain and service")
 
 
 def check_knowledge_consent_gate() -> None:
@@ -130,9 +142,47 @@ def check_helper_script() -> None:
     if "title%3A%22Example%22" not in output:
         fail("build-url output did not URL-encode q")
 
+    planned_result = subprocess.run(
+        [sys.executable, str(script), "build-url", "--object", "Program", "--field", "id"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if planned_result.returncode == 0:
+        fail("cvp_query.py built a live URL for unconfigured Program object")
+    if "Known but not live-configured object 'Program'" not in planned_result.stderr:
+        fail("Program recovery message did not explain private endpoint configuration")
+
+    objects_result = subprocess.run(
+        [sys.executable, str(script), "objects", "--include-planned"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if objects_result.returncode != 0:
+        fail(f"cvp_query.py objects --include-planned failed: {objects_result.stderr.strip()}")
+    if "planned\tProgram\t" not in objects_result.stdout:
+        fail("objects --include-planned did not list Program")
+
 
 def check_request_guards() -> None:
     script = ROOT / "scripts" / "cvp_query.py"
+    help_result = subprocess.run(
+        [sys.executable, str(script), "get", "--help"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if help_result.returncode != 0:
+        fail("cvp_query.py get --help failed")
+    if "--yes" in help_result.stdout:
+        fail("get help still exposes --yes Keychain bypass")
+    if "--allow-host" in help_result.stdout:
+        fail("get help still exposes --allow-host")
+
     http_result = subprocess.run(
         [sys.executable, str(script), "get", "--url", "http://data.media.theplatform.com/media/data/Media"],
         cwd=str(ROOT),
@@ -157,6 +207,119 @@ def check_request_guards() -> None:
     if "Refusing request to unlisted host" not in host_result.stderr:
         fail("unlisted-host refusal message changed unexpectedly")
 
+    path_result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "get",
+            "--url",
+            "https://data.media.theplatform.com/not-a-data-service-path?fields=id&byField=guid%7Cabc123",
+        ],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if path_result.returncode == 0:
+        fail("cvp_query.py allowed an allowed-host URL outside Data Services prefixes")
+    if "outside configured CVP Data Services endpoint prefixes" not in path_result.stderr:
+        fail("path-prefix refusal message changed unexpectedly")
+
+    no_fields_result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "get",
+            "--url",
+            "https://data.media.theplatform.com/media/data/Media?byField=guid%7Cabc123",
+        ],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if no_fields_result.returncode == 0:
+        fail("cvp_query.py allowed live GET without fields")
+    if "without explicit fields" not in no_fields_result.stderr:
+        fail("missing-fields refusal message changed unexpectedly")
+
+    no_filter_result = subprocess.run(
+        [sys.executable, str(script), "get", "--url", "https://data.media.theplatform.com/media/data/Media?fields=id"],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if no_filter_result.returncode == 0:
+        fail("cvp_query.py allowed live GET without filter or range")
+    if "without a filter or range" not in no_filter_result.stderr:
+        fail("missing-filter refusal message changed unexpectedly")
+
+    sensitive_header_result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "get",
+            "--url",
+            "https://data.media.theplatform.com/media/data/Media?fields=id&byField=guid%7Cabc123",
+            "--header",
+            "Authorization=Bearer bad",
+        ],
+        cwd=str(ROOT),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if sensitive_header_result.returncode == 0:
+        fail("cvp_query.py allowed Authorization through --header")
+    if "Refusing sensitive header from CLI" not in sensitive_header_result.stderr:
+        fail("sensitive-header refusal message changed unexpectedly")
+
+    mixed_env = os.environ.copy()
+    mixed_env["CVP_COOKIE"] = "stale-cookie"
+    mixed_auth_result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "get",
+            "--use-keychain",
+            "--url",
+            "https://data.media.theplatform.com/media/data/Media?fields=id&byField=guid%7Cabc123",
+        ],
+        cwd=str(ROOT),
+        env=mixed_env,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if mixed_auth_result.returncode == 0:
+        fail("cvp_query.py allowed Keychain auth mixed with env auth")
+    if "Refusing mixed auth sources" not in mixed_auth_result.stderr:
+        fail("mixed-auth refusal message changed unexpectedly")
+
+
+def check_response_redaction() -> None:
+    script = ROOT / "scripts" / "cvp_query.py"
+    spec = importlib.util.spec_from_file_location("cvp_query", script)
+    if spec is None or spec.loader is None:
+        fail("could not import cvp_query.py for redaction checks")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    body = json.dumps(
+        {
+            "id": "safe-id",
+            "sourceUrl": "https://storage.example.com/private/master.m3u8",
+            "nested": {"token": "secret-token", "title": "Visible"},
+        }
+    )
+    output, truncated = module.safe_response_text(body, allow_raw_response=False, max_bytes=10000)
+    if truncated:
+        fail("redaction fixture unexpectedly truncated")
+    if "https://storage.example.com/private/master.m3u8" in output or "secret-token" in output:
+        fail("safe_response_text did not redact sensitive URL/token fields")
+    if "Visible" not in output:
+        fail("safe_response_text over-redacted non-sensitive fields")
+
 
 def main() -> int:
     check_files()
@@ -166,6 +329,7 @@ def main() -> int:
     check_knowledge_consent_gate()
     check_helper_script()
     check_request_guards()
+    check_response_redaction()
     print("OK: cvp-query-agent package sanity checks passed")
     return 0
 

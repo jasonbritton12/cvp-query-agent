@@ -11,6 +11,10 @@ python3 scripts/cvp_query.py build-url --object Media --q "title:\"Example\"" --
 python3 scripts/cvp_query.py build-url --object Media --by-field guid=abc123 --field id --field guid --field title
 python3 scripts/cvp_query.py get --url http://data.media.theplatform.com/media/data/Media
 python3 scripts/cvp_query.py get --url https://example.com/media/data/Media
+python3 scripts/cvp_query.py get --url "https://data.media.theplatform.com/not-a-data-service-path?fields=id&byField=guid%7Cabc123"
+python3 scripts/cvp_query.py get --url "https://data.media.theplatform.com/media/data/Media?byField=guid%7Cabc123"
+python3 scripts/cvp_query.py get --url "https://data.media.theplatform.com/media/data/Media?fields=id"
+python3 scripts/cvp_query.py build-url --object Program --field id
 ```
 
 Expected:
@@ -20,10 +24,15 @@ Expected:
 - generated URLs are encoded and include only requested query parameters
 - HTTP URLs are refused before any request is made
 - unlisted HTTPS hosts are refused before any request is made
+- allowed-host but non-Data-Service paths are refused before any request is made
+- live GET without explicit `fields` is refused unless raw output is explicitly allowed
+- live GET without a filter or range is refused unless explicitly allowed
 - no credentials are printed
 - maintained knowledge docs exist for endpoint inventory, API call patterns, field/join rules, and source catalog references
 - `program` is not aliased to `Media`; CVP Entertainment has a distinct `Program` object
 - knowledge-file updates require explicit user permission, including ignored private files
+- `--yes` and `--allow-host` are not exposed on live GET
+- sensitive auth headers through `--header` and mixed Keychain/environment auth are refused
 
 ## Agent Behavior Prompts
 

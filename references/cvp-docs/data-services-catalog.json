@@ -1,5 +1,5 @@
 {
-  "generated_from": "/Users/jasonbritton/.codex/skills/cvp-agent/references/docs_index.json",
+  "generated_from": "${CODEX_HOME:-$HOME/.codex}/skills/cvp-agent/references/docs_index.json",
   "source_generated_at": "2026-01-29",
   "scope": "Condensed CVP Data Services catalog for cvp-query-agent. Excludes Confluence/internal entries and full document text.",
   "entries": [
@@ -8,441 +8,567 @@
       "title": "Developing with the Cloud Video Platform's data services",
       "source_url": "https://docs.theplatform.com/help/wsf-developing-with-theplatforms-data-services",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 949,
       "title": "Read-only data services",
       "source_url": "https://docs.theplatform.com/help/wsf-read-only-data-services",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 951,
       "title": "Selecting objects in Data Service operations",
       "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-in-data-service-operations",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 952,
       "title": "Selecting objects using the q query parameter",
       "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-by-using-the-q-query-parameter",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 953,
       "title": "Q query syntax reference",
       "source_url": "https://docs.theplatform.com/help/wsf-q-query-syntax-reference",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 954,
       "title": "Selecting objects using a byField query parameter",
       "source_url": "https://docs.theplatform.com/help/wsf-selecting-objects-by-using-a-byfield-query-parameter",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 960,
       "title": "Controlling the contents of the response payload",
       "source_url": "https://docs.theplatform.com/help/wsf-controlling-the-contents-of-the-response-payload",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 964,
       "title": "Specifying the data-service response payload format",
       "source_url": "https://docs.theplatform.com/help/wsf-specifying-the-data-service-response-payload-format",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 967,
       "title": "Discovering service and endpoint schemas",
       "source_url": "https://docs.theplatform.com/help/wsf-discovering-service-and-endpoint-schemas",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 978,
       "title": "Custom fields API reference",
       "source_url": "https://docs.theplatform.com/help/wsf-custom-fields-api-reference",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 979,
       "title": "Field endpoint",
       "source_url": "https://docs.theplatform.com/help/wsf-field-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_09.html",
-      "part": "09"
+      "part": "09",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 1001,
       "title": "Business-service API conventions",
       "source_url": "https://docs.theplatform.com/help/wsf-business-service-api-conventions",
       "local_file": "CVPDocs_2025-11-30_Part_10.html",
-      "part": "10"
+      "part": "10",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 1008,
       "title": "Index of standard request parameters",
       "source_url": "https://docs.theplatform.com/help/wsf-index-of-standard-request-parameters",
       "local_file": "CVPDocs_2025-11-30_Part_10.html",
-      "part": "10"
+      "part": "10",
+      "domain": "data-services-framework",
+      "service": "Data Services Framework"
     },
     {
       "id": 1422,
       "title": "Entertainment data service",
       "source_url": "https://docs.theplatform.com/help/tvds-entertainment-data-service",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1434,
       "title": "Credit endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-credit-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1435,
       "title": "Credit object",
       "source_url": "https://docs.theplatform.com/help/tvds-credit-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1441,
       "title": "Person endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-person-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1442,
       "title": "Person object",
       "source_url": "https://docs.theplatform.com/help/tvds-person-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1444,
       "title": "Retrieve Person objects using the Q query",
       "source_url": "https://docs.theplatform.com/help/tvds-retrieving-person-objects-by-using-the-q-query",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1445,
       "title": "Program endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-program-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1446,
       "title": "Program object",
       "source_url": "https://docs.theplatform.com/help/tvds-program-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1447,
       "title": "Retrieving Program objects using the Q query",
       "source_url": "https://docs.theplatform.com/help/retrieving-program-objects-using-the-q-query",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "general",
+      "service": "CVP Documentation"
     },
     {
       "id": 1448,
       "title": "ProgramAvailability endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-programavailability-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1449,
       "title": "ProgramAvailability object",
       "source_url": "https://docs.theplatform.com/help/tvds-programavailability-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1450,
       "title": "ProgramAvailability.listings",
       "source_url": "https://docs.theplatform.com/help/tvds-programavailability-listings",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1451,
       "title": "ProgramAvailability.media",
       "source_url": "https://docs.theplatform.com/help/tvds-programavailability-media",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1452,
       "title": "Retrieving ProgramAvailability objects",
       "source_url": "https://docs.theplatform.com/help/tvds-retrieving-programavailability-objects",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1453,
       "title": "Retrieving ProgramAvailability objects by using the Q query",
       "source_url": "https://docs.theplatform.com/help/tvds-retrieving-programavailability-objects-by-using-the-q-query",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1454,
       "title": "Station endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-station-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1455,
       "title": "Station object",
       "source_url": "https://docs.theplatform.com/help/tvds-station-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1456,
       "title": "Tag endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-tag-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1457,
       "title": "Tag object",
       "source_url": "https://docs.theplatform.com/help/tvds-tag-object",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1458,
       "title": "TvSeason endpoint",
       "source_url": "https://docs.theplatform.com/help/tvds-tvseason-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1459,
       "title": "TvSeason object",
       "source_url": "https://docs.theplatform.com/help/tvds-tvseason-fields",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1479,
       "title": "Entertainment data service object schema version history",
       "source_url": "https://docs.theplatform.com/help/tvds-entertainment-data-service-object-schema-version-history",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 1480,
       "title": "Entertainment data service release notes",
       "source_url": "https://docs.theplatform.com/help/tvds-entertainment-data-service-release-notes",
       "local_file": "CVPDocs_2025-11-30_Part_14.html",
-      "part": "14"
+      "part": "14",
+      "domain": "entertainment",
+      "service": "Entertainment Data Service"
     },
     {
       "id": 2085,
       "title": "AccountSettings endpoint (Media)",
       "source_url": "https://docs.theplatform.com/help/media-accountsettings-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2086,
       "title": "AccountSettings object (Media)",
       "source_url": "https://docs.theplatform.com/help/media-accountsettings-object",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2087,
       "title": "AssetType endpoint",
       "source_url": "https://docs.theplatform.com/help/media-assettype-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2090,
       "title": "Category endpoint",
       "source_url": "https://docs.theplatform.com/help/media-category-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2093,
       "title": "MediaDefaults endpoint",
       "source_url": "https://docs.theplatform.com/help/media-mediadefaults-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2094,
       "title": "MediaDefaults object",
       "source_url": "https://docs.theplatform.com/help/media-mediadefaults-object",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2095,
       "title": "Media endpoint",
       "source_url": "https://docs.theplatform.com/help/media-media-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2096,
       "title": "Media object",
       "source_url": "https://docs.theplatform.com/help/media-media-object",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2097,
       "title": "Media.availabilityWindows",
       "source_url": "https://docs.theplatform.com/help/media-media-availabilitywindows",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2098,
       "title": "Media.link",
       "source_url": "https://docs.theplatform.com/help/media-media-link",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2099,
       "title": "Media.ratings",
       "source_url": "https://docs.theplatform.com/help/media-media-ratings",
       "local_file": "CVPDocs_2025-11-30_Part_20.html",
-      "part": "20"
+      "part": "20",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2100,
       "title": "Media.thumbnails",
       "source_url": "https://docs.theplatform.com/help/media-media-thumbnails",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2101,
       "title": "Retrieving Media objects",
       "source_url": "https://docs.theplatform.com/help/media-retrieving-media-objects",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2102,
       "title": "Using media filters",
       "source_url": "https://docs.theplatform.com/help/media-using-media-filters",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2104,
       "title": "Using the q query to search for Media objects",
       "source_url": "https://docs.theplatform.com/help/media-using-the-q-query-to-search-for-media-objects",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2105,
       "title": "MediaFile endpoint",
       "source_url": "https://docs.theplatform.com/help/media-mediafile-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2106,
       "title": "MediaFile object",
       "source_url": "https://docs.theplatform.com/help/media-mediafile-object",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2107,
       "title": "Provider endpoint",
       "source_url": "https://docs.theplatform.com/help/media-provider-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2108,
       "title": "Provider object",
       "source_url": "https://docs.theplatform.com/help/media-provider-object",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2109,
       "title": "Release endpoint",
       "source_url": "https://docs.theplatform.com/help/media-release-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2110,
       "title": "Release object",
       "source_url": "https://docs.theplatform.com/help/media-release-object",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2111,
       "title": "Server endpoint",
       "source_url": "https://docs.theplatform.com/help/media-server-endpoint",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2112,
       "title": "Server object",
       "source_url": "https://docs.theplatform.com/help/media-server-object",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2120,
       "title": "Credit object",
       "source_url": "https://docs.theplatform.com/help/media-credit-object",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2128,
       "title": "Media data service object schema history",
       "source_url": "https://docs.theplatform.com/help/media-data-service-object-schema-history",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2129,
       "title": "Media data service release notes",
       "source_url": "https://docs.theplatform.com/help/media-data-service-release-notes",
       "local_file": "CVPDocs_2025-11-30_Part_21.html",
-      "part": "21"
+      "part": "21",
+      "domain": "media",
+      "service": "Media Data Service"
     },
     {
       "id": 2599,
       "title": "Credit object",
       "source_url": "https://docs.theplatform.com/help/ingest-credit-object",
       "local_file": "CVPDocs_2025-11-30_Part_25.html",
-      "part": "25"
+      "part": "25",
+      "domain": "general",
+      "service": "CVP Documentation"
     }
   ]
 }

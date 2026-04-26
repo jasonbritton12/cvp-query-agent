@@ -8,9 +8,10 @@ Use runtime-only credentials for CVP access. Do not store tokens, cookies, signe
 2. Store only a short-lived read-only credential in macOS Keychain.
 3. Run `scripts/cvp_query.py get --use-keychain` when live data is required.
 4. Let the helper retrieve the credential only after explicit runtime confirmation.
-5. Rotate the credential after use or on a short schedule.
+5. Confirm the live request scope by typing `RUN`.
+6. Rotate the credential after use or on a short schedule.
 
-The helper refuses non-HTTPS requests and refuses hosts that are not listed in `references/service-map.json` unless a user passes `--allow-host` for that request.
+The helper refuses non-HTTPS requests and refuses URLs outside configured CVP Data Services endpoint prefixes from `references/service-map.json` or the ignored private endpoint overlay.
 
 ## Store a Bearer Token in macOS Keychain
 
@@ -76,5 +77,7 @@ security delete-generic-password \
 - Prefer short-lived credentials.
 - Keep service scope as narrow as possible.
 - Do not use `--header Authorization=...` for normal operation because it can expose secrets in shell history and process listings.
-- Do not pass `--yes` unless another human-approved wrapper is already handling runtime consent.
+- Do not pass credentials through `--header`; the helper rejects sensitive auth headers.
+- Do not mix Keychain credentials with `CVP_AUTHORIZATION`, `CVP_BEARER_TOKEN`, or `CVP_COOKIE`; set at most one environment auth variable when using env-backed auth.
+- Use private endpoint overlays for additional trusted CVP endpoints; there is no runtime arbitrary-host override for authenticated requests.
 - Treat exports and result files as sensitive data even when credentials are read-only.

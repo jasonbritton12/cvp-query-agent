@@ -55,7 +55,7 @@ For customer-specific, tenant-specific, or otherwise sensitive endpoints:
 2. Store them in `references/local-endpoints.private.json`.
 3. Keep that file local; it is ignored by Git.
 4. Run normal `build-url` or `get` commands with the private object names from that overlay.
-5. Pass any additional host needed for one-off calls with `--allow-host`.
+5. Do not use runtime host overrides for credentialed calls; trusted live hosts must come from committed generic endpoints or the ignored private overlay.
 
 ## Private Overlay Shape
 
@@ -89,4 +89,4 @@ Use the same service/object shape as `service-map.json`:
 - Endpoint URLs are not credentials, but customer-specific hosts can still reveal sensitive operational context.
 - Do not store credentials, tokens, cookies, signed URLs, or account secrets in endpoint files.
 - Prefer exact service/object names over broad aliases.
-- Keep write-capable endpoint notes out of normal query paths unless the user explicitly requests a write workflow.
+- Keep write-capable endpoint notes out of this read-only skill; use a separate reviewed workflow for any write-capable CVP work.

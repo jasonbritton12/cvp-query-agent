@@ -6,14 +6,14 @@ It intentionally does not include the full local HTML/PDF export. The full expor
 
 ## Included Files
 
-- `data-services-catalog.json`: selected CVP Data Services documentation titles, source URLs, local export filenames, and index IDs. It now includes the Media and Entertainment service entries needed by the maintained endpoint and join docs.
+- `data-services-catalog.json`: selected CVP Data Services documentation titles, source URLs, local export filenames, index IDs, domain labels, and service labels. It now includes the Media and Entertainment service entries needed by the maintained endpoint and join docs.
 
 ## Source Corpus
 
 The catalog was condensed from the installed `cvp-agent` documentation index:
 
-- source index: `/Users/jasonbritton/.codex/skills/cvp-agent/references/docs_index.json`
-- source map: `/Users/jasonbritton/.codex/skills/cvp-agent/references/docs_map.md`
+- source index: `${CODEX_HOME:-$HOME/.codex}/skills/cvp-agent/references/docs_index.json`
+- source map: `${CODEX_HOME:-$HOME/.codex}/skills/cvp-agent/references/docs_map.md`
 - local export source noted by that map: `/Users/jasonbritton/Documents/PDF_Collections/CVP_Dupe`
 - source index generated: `2026-01-29`
 

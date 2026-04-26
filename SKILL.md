@@ -16,7 +16,7 @@ Default to a read-only analyst workflow.
 1. Translate the user question into required entities, filters, output fields, and join keys.
 2. Review `references/api-call-patterns.md`, `references/field-and-join-model.md`, and the relevant CVP source entry before using endpoint-specific behavior.
 3. Build the smallest safe query that can answer the question.
-4. Execute only `GET` requests unless the user explicitly requests a write and confirms the risk.
+4. Execute only read-only `GET` requests. Write, delete, ingest, start, update, and complete operations are out of scope for this skill and require a separate reviewed workflow.
 5. Cross-reference IDs by querying the endpoint that owns the referenced object.
 6. Return the answer, key records, query URLs or redacted request summaries, and any uncertainty.
 
@@ -52,8 +52,10 @@ Use `references/endpoints.md` for the human-readable endpoint inventory and `ref
 When endpoint behavior, query parameters, object fields, or relationships are not already certain, use the installed CVP documentation skill if available:
 
 ```bash
-python3 /Users/jasonbritton/.codex/skills/cvp-agent/scripts/cvp_lookup.py "Media endpoint retrieving Media objects fields byField" --top 8
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/cvp-agent/scripts/cvp_lookup.py" "Media endpoint retrieving Media objects fields byField" --top 8
 ```
+
+Use the installed `cvp-agent` skill when available. If it is not installed, rely on `references/cvp-docs/data-services-catalog.json` and keep the request plan conservative.
 
 Then open the cited local documentation file if accessible. If the full export is blocked by filesystem permissions, state that only the index was available and keep the request plan conservative.
 
@@ -109,7 +111,7 @@ For operator workflows on macOS, prefer the Keychain-backed runtime path:
 python3 scripts/cvp_query.py get --use-keychain --object Media --by-field guid=12345 --field id --field guid --field title
 ```
 
-Use `references/runtime-auth.md` for the Keychain storage command and access-removal steps. The helper asks for runtime confirmation before reading Keychain, refuses non-HTTPS requests, and restricts live requests to known CVP hosts unless the user explicitly passes `--allow-host`.
+Use `references/runtime-auth.md` for the Keychain storage command and access-removal steps. The helper asks for runtime confirmation before reading Keychain, requires a separate `RUN` confirmation before live requests, refuses non-HTTPS requests, and restricts live requests to configured CVP Data Services endpoint prefixes.
 
 Never write credentials into skill files, references, logs, or final answers.
 
@@ -141,7 +143,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 ## Guardrails
 
 - Prefer read-only `GET` requests.
-- Do not call update/delete/start/complete methods unless explicitly requested and confirmed.
+- Do not call update/delete/start/complete methods; hand them off to a separate reviewed workflow.
 - Do not infer object relationships from similar field names without validating through docs or returned data.
 - Do not broaden filters silently when an exact lookup returns no rows; report the miss and ask whether to broaden.
 - Do not update knowledge files without explicit user permission for that update.
