@@ -59,7 +59,7 @@ The local ENTERTAINMENT dumps verified these object families, but the live Enter
 | Object | Use For | Starter Fields |
 | --- | --- | --- |
 | `Program` | Program/title/episode metadata | `id`, `guid`, `title`, `ownerId`, `approved`, `programType`, `seriesId`, `tvSeasonId`, `imageMediaIds` |
-| `ProgramAvailability` | Availability-aware program records and Media bridges | `id`, `guid`, `title`, `approved`, `media`, `mediaCount`, `distributionRightIds`, `distributionRights` |
+| `ProgramAvailability` | Availability-aware program records and Media bridges | `id`, `guid`, `title`, `approved`, `media`, `mediaCount`, `distributionRightIds`, `distributionRights`; live schema 2.0 can expose program fields as `plprogram$...` |
 | `Credit` | Person-to-program/season credits | `id`, `guid`, `personId`, `programId`, `tvSeasonId`, `creditType`, `characterName` |
 | `Person` | Person metadata | `id`, `guid`, `title`, `aliases`, `credits`, `imageMediaIds` |
 | `Tag` | Entertainment tag lookup | `id`, `guid`, `title`, `scheme` |
@@ -109,10 +109,19 @@ Do not assume:
 ### Bridge Entertainment ProgramAvailability to Media
 
 1. Query `ProgramAvailability` only after confirming the Entertainment base URL.
-2. Request `id,guid,title,approved,media,media.id,media.guid,media.availabilityState` plus required custom ID fields.
-3. Inspect the returned `media` shape before joining.
-4. Resolve Media records by confirmed `Media.id` or `guid`.
-5. Report ProgramAvailability state separately from Media availability state.
+2. Start with `schema=2.0` when schema 1.x returns only sparse identity fields. Live program fields may be namespaced, for example `plprogram$programType`, `plprogram$seriesId`, `plprogram$tvSeasonNumber`, `plprogram$tvSeasonEpisodeNumber`, and `plprogram$seriesEpisodeNumber`.
+3. Request `id,guid,title,ownerId` plus needed `plprogram$...` fields and any available `media` bridge fields.
+4. Inspect the returned `media` shape before joining. Do not assume `ProgramAvailability.media` is present in a live field projection just because local datadumps included it.
+5. If `media` is absent, resolve `Media` by matching `ProgramAvailability.guid` to `Media.guid`; prefer `ownerId` matches when multiple Media records are returned.
+6. Use the resolved `Media.id` for file joins.
+7. Report ProgramAvailability state separately from Media availability state. Fields such as `availableDate`, `expirationDate`, and Media approval should usually be taken from the resolved `Media` record when the ProgramAvailability response does not carry them directly.
+
+### Join Media to MediaFile
+
+1. Resolve the owning `Media.id`.
+2. Query `MediaFile` with the confirmed media reference filter, such as `byMediaId=<Media.id>` where supported.
+3. Do not assume `q` search or generic `byField` lookup is enabled for `MediaFile`; verify endpoint behavior before using either.
+4. For mezzanine reports, filter file records where content type is video and `assetTypes` / `plfile$assetTypes` contains the required mezzanine value.
 
 ### Find Artwork/Image Media
 

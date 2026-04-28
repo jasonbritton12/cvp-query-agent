@@ -58,6 +58,10 @@ Important `MediaFile` fields observed in samples:
 
 Request only the URL/path/protection fields needed for a task because they can expose sensitive delivery and storage information.
 
+Live query caveat: `MediaFile` search capabilities can be restricted. In one validated workflow, `q` search returned search-not-enabled behavior and guessed filters such as generic `byField`, `mediaId`, and `byMedia` were not valid. The working file join was `byMediaId=<Media.id>`.
+
+Mezzanine is represented as a file asset type, not as a `mediaAssetType` field. Match `assetTypes` / `plfile$assetTypes` values such as `Mezzanine`, `Mezzanine Amazon`, `Mezzanine Roku`, `Mezzanine Frndly TV`, or other account-specific mezzanine variants.
+
 ## ENTERTAINMENT Dump Coverage
 
 Observed files covered these object families:
@@ -90,7 +94,7 @@ Important `ProgramAvailability` fields observed in samples:
 - availability/listing fields: `availableTvSeasonIds`, `distributionRightIds`, `distributionRights`, `listingCount`, `listings`
 - media relationship fields: `mediaCount`, `media`
 
-The `ProgramAvailability.media` field is the primary observed bridge from Entertainment metadata to Media objects. Confirm returned subfields before joining to Media.
+The `ProgramAvailability.media` field is the primary observed bridge in local samples. Live responses may omit `media` from field projections, so confirm the returned shape before joining to Media. A validated fallback is `ProgramAvailability.guid` -> `Media.guid`, with `ownerId` used to disambiguate when multiple Media records share a GUID.
 
 ## Join Patterns
 
@@ -98,11 +102,11 @@ Observed useful joins:
 
 | Source | Field | Target | Notes |
 | --- | --- | --- | --- |
-| `MediaFile` | `mediaId` | `Media.id` | File-to-title join. |
+| `MediaFile` | `mediaId` / `byMediaId` | `Media.id` | File-to-title join; use `byMediaId=<Media.id>` where supported for live MediaFile lookup. |
 | `Release` | `mediaId` | `Media.id` | Release-to-title join. |
 | `Release` | `fileId` | `MediaFile.id` | Release-to-file join. |
 | `Media` | `programId` | `Program.id` | Media-to-Entertainment join; verify account scope and object existence. |
-| `ProgramAvailability` | `media` | `Media` | Embedded or referenced Media bridge; inspect returned shape before joining. |
+| `ProgramAvailability` | `media` or `guid` | `Media` | Prefer embedded/referenced Media when present; if absent, resolve `ProgramAvailability.guid` to `Media.guid` and disambiguate by `ownerId`. |
 | `Program` | `imageMediaIds` | `Media.id` | Image/artwork Media references. |
 | `Program` | `seriesId`, `tvSeasonId` | Entertainment series/season objects | Confirm target endpoints before use. |
 | `Credit` | `personId`, `programId`, `tvSeasonId` | `Person`, `Program`, `TvSeason` | Credit relationship joins. |
@@ -154,6 +158,12 @@ Clarification needed before canonicalizing:
 
 - exact documented parameter syntax for `byMediaAvailabilityState`
 - whether `byApproved=true` applies to ProgramAvailability itself, embedded Media, or both in the intended query
+
+Live schema note:
+
+- `schema=1.x` can return sparse ProgramAvailability payloads with only basic identity fields. Use `schema=2.0` when program fields are missing.
+- In `schema=2.0`, core program fields can be namespaced as `plprogram$programType`, `plprogram$seriesId`, `plprogram$tvSeasonNumber`, `plprogram$tvSeasonEpisodeNumber`, and `plprogram$seriesEpisodeNumber`.
+- Availability fields requested for the associated media object, such as `availableDate`, `expirationDate`, and approval state, may need to come from the resolved `Media` record rather than the ProgramAvailability row.
 
 ### Artwork / Image Backup Queries
 

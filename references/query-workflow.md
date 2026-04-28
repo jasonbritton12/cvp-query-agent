@@ -10,7 +10,7 @@ Convert the user request into a small query contract:
 - join keys or referenced IDs
 - whether live data access is required or a dry-run plan is enough
 
-If the user asks for a report, define the final columns before querying.
+If the user asks for a report, define both the final columns and the output grain before querying. Examples: one row per program, one row per Media object, or one row per MediaFile. The grain determines which parent fields must be repeated and how child objects should be represented.
 
 ## 2. Resolve Endpoint and Field Semantics
 
@@ -54,6 +54,8 @@ Before a live request, check:
 
 Use `scripts/cvp_query.py get` for simple GETs. For complex pagination or exports, create a task-local script in the workspace, not inside the skill.
 
+When CVP returns JSON, inspect the body for exception payloads such as `isException: true` even when the HTTP status is 200.
+
 ## 5. Cross-Reference IDs
 
 Maintain a join table with these columns while working:
@@ -79,6 +81,8 @@ Never collapse unresolved IDs into a clean answer. Surface them as data quality 
 ## 6. Pagination and Counts
 
 If the question depends on complete counts, do not rely on the first page unless the endpoint docs or response metadata confirms the total. Capture the page size, next-page marker, or total field when present. If pagination behavior is not confirmed, state that the count is page-limited.
+
+For large CVP exports, keep page sizes conservative and endpoint-compatible. If rate limiting or transient server errors occur, use retry/backoff behavior and preserve partial outputs separately from final outputs.
 
 ## 7. Answer From Evidence
 
@@ -119,8 +123,20 @@ Use clear labels:
 
 ### Build a user-ready report
 
-1. Confirm columns.
+1. Confirm columns and row grain.
 2. Fetch minimal fields.
 3. Resolve labels for foreign IDs.
 4. Save a CSV only if requested.
 5. Include endpoint and filter metadata in the final summary.
+
+For child-object reports, prefer one row per child record with parent fields repeated. Avoid pipe-joined multi-value summary cells when the user expects values to be readable in spreadsheet cells.
+
+For Excel-readable CSVs:
+
+- flatten nested child object fields into individual columns where practical
+- use stable prefixes such as `program_`, `media_`, and `mediaFile_`
+- preserve empty values as blank cells, not placeholder delimiters
+- normalize embedded newlines when multiline payloads would make the sheet hard to scan
+- write UTF-8 with BOM when the CSV is intended to be opened directly in Excel
+
+Treat "return everything" exports as sensitive. CVP file payloads can include URLs, paths, transfer settings, or credential-like fields. Keep raw JSON/CSV artifacts internal unless explicitly sanitized.
