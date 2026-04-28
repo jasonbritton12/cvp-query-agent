@@ -47,6 +47,8 @@ At minimum, identify:
 
 Use `references/endpoints.md` for the human-readable endpoint inventory and `references/service-map.json` for known local base URLs and endpoint templates. Use `references/cvp-docs/data-services-catalog.json` to locate the condensed CVP source docs behind the workflow. If a needed service is not listed, use the CVP documentation lookup workflow before composing the request.
 
+Use `references/verified-endpoints.md` when a task asks which endpoints have been observed as readable in the live account, or when a query needs an account-verified endpoint that is not yet promoted into `service-map.json`.
+
 ## Documentation Lookup
 
 When endpoint behavior, query parameters, object fields, or relationships are not already certain, use the installed CVP documentation skill if available:
@@ -76,7 +78,8 @@ Read these maintained knowledge docs before building non-trivial calls:
 1. `references/api-call-patterns.md` for endpoint/filter/field selection order.
 2. `references/field-and-join-model.md` for baseline field names and cross-endpoint join discipline.
 3. `references/datadump-learnings.md` for sanitized field, join, and query-note patterns observed in local partial datadumps.
-4. `references/query-workflow.md` for natural-language planning, reporting, and answer format.
+4. `references/verified-endpoints.md` for sanitized live endpoint probe results when endpoint availability is part of the question.
+5. `references/query-workflow.md` for natural-language planning, reporting, and answer format.
 
 For simple single-endpoint reads:
 
@@ -155,6 +158,7 @@ For live results, distinguish observed data from inference. For dry runs, label 
 
 - `references/service-map.json`: known base URLs, object endpoint templates, and service aliases.
 - `references/endpoints.md`: human-readable endpoint inventory and update rules.
+- `references/verified-endpoints.md`: sanitized live read-only endpoint probes for account-verified availability and invalid shorthand endpoint shapes.
 - `references/api-call-patterns.md`: maintained CVP API call-building order of operations.
 - `references/field-and-join-model.md`: maintained field naming and cross-endpoint join baseline.
 - `references/datadump-learnings.md`: sanitized local datadump and query-note findings.

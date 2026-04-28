@@ -14,14 +14,15 @@ If the user asks for a report, define both the final columns and the output grai
 
 ## 2. Resolve Endpoint and Field Semantics
 
-Use `references/service-map.json` for seeded endpoint URLs, then verify any uncertain behavior with CVP docs.
+Use `references/service-map.json` for seeded endpoint URLs, then verify any uncertain behavior with CVP docs. When the task concerns account-specific endpoint availability or a live endpoint that is not yet in the service map, check `references/verified-endpoints.md` for sanitized read-only probe evidence.
 
 Prefer this lookup sequence:
 
 1. endpoint page
 2. object page
 3. Data Service selection/query parameter pages
-4. schema history or release notes only when behavior appears version-sensitive
+4. verified endpoint probe evidence when available
+5. schema history or release notes only when behavior appears version-sensitive
 
 Do not assume field names from Console labels. Map UI labels to API fields through object documentation or returned schema/data.
 

@@ -4,6 +4,8 @@ Use this file as the human-readable endpoint inventory for `cvp-query-agent`.
 
 The machine-readable endpoint inventory is `references/service-map.json`. Keep this Markdown file aligned with that JSON whenever committed endpoints change.
 
+For sanitized live read-only probe results, use `references/verified-endpoints.md`. That file records account-verified readable endpoints and known invalid shorthand endpoint shapes without storing raw payloads or credentials.
+
 At runtime, `scripts/cvp_query.py` also merges `references/local-endpoints.private.json` when that local file exists.
 
 ## Current Committed Endpoints
@@ -23,6 +25,16 @@ These are generic CVP Data Services endpoints currently committed with the skill
 | Media Data Service | `Provider` | `https://data.media.theplatform.com/media/data/Provider` | Provider/config lookup. |
 | Media Data Service | `Release` | `https://data.media.theplatform.com/media/data/Release` | Release records; useful for `mediaId`, `fileId`, `delivery`, and `url`. |
 | Media Data Service | `Server` | `https://data.media.theplatform.com/media/data/Server` | Server/storage config; request only needed fields. |
+
+## Account-Verified Endpoint Evidence
+
+`references/verified-endpoints.md` currently records live read-only probes for additional endpoint shapes observed from local metadata record IDs, including:
+
+- Delivery `Restriction`
+- Entertainment objects such as `Credit`, `Person`, `Program`, `ProgramAvailability`, `Station`, `Tag`, and `TvSeason`
+- Field metadata endpoints that use slash-form paths such as `Program/Field`, `ProgramAvailability/Field`, `Media/Field`, and `MediaFile/Field`
+
+The same file also records invalid shorthand shapes such as `ProgramField`, `TagField`, `Field`, and `MediaFileField`. Prefer the slash-form endpoint when available.
 
 ## Known But Not Yet Live-Configured
 
